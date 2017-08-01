@@ -98,6 +98,8 @@ The result should be the following:
 - then bootstrapcss and pdfmake are loaded in parallel
 - then finally pdfmakefonts is loaded
 
+**Note**: If any of the declared resource tries to load another resource by themselves, it usually happens before the next step is loaded (for example, the fontawesome script will load some CSS and fonts).
+
 ## API
 
 <pre>
