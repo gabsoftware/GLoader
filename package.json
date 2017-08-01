@@ -1,0 +1,31 @@
+{
+  "name": "gloader",
+  "version": "1.0.0",
+  "description": "Web resources loader",
+  "main": "gloader.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabsoftware/gloader.git"
+  },
+  "author": "Gabriel Hautclocq",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gabsoftware/gloader/issues"
+  },
+  "homepage": "https://github.com/gabsoftware/gloader#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0",
+    "jshint": "^2.9.5",
+    "merge-stream": "^1.0.1"
+  }
+}
