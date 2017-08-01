@@ -1,0 +1,3 @@
+[submodule "lib/dependency-graph"]
+	path = lib/dependency-graph
+	url = git@github.com:gabsoftware/dependency-graph.git
