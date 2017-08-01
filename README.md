@@ -1,6 +1,6 @@
 # GLoader
 
-GLoader is a Web resources loader with dependency management.
+GLoader is a Web resources loader with dependency management. It's very lightweight (6 kb minified).
 
 Useful whenever you have a bunch of libraries to load with some libraries depending on another. JavaScript and CSS Stylesheets are supported.
 
