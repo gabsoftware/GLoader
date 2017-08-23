@@ -291,7 +291,7 @@ Returns (Promise)             : A promise that will be fulfilled when all the re
 
 <b>load</b>()
 Load all the resources, step by step
-Parameters                            : (none)
+Parameters                    : (none)
 Returns (Promise)             : A promise fulfilled after all the resources of each steps have been
                                 loaded
 </pre>
