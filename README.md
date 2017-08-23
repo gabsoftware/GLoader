@@ -169,8 +169,8 @@ Parameters:
                                 it should be a valid URL. It can also be an object:
         {
             <i>url</i>      (string) : The URL of the script to load
-            <i>fallback</i> (string) : The fallback URL of the script to load, that will be used if the script
-                                cannot be loaded with the url config
+            <i>fallback</i> (string) : The fallback URL of the script to load, that will be used if the
+                                script cannot be loaded with the url config
         }
     <i>callback</i> (function|object): The callback function to call when the script has been loaded. The
                                 callback parameter can also be an object:
