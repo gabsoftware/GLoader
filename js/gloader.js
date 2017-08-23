@@ -44,8 +44,12 @@ GLoader.prototype = {
         if( ! data ) {
             throw new Error( "data was empty for script #" + id );
         }
+        // if data is a string, consider it as an URL
+        if( typeof data == "string" ) {
+            data = { "url": data };
+        }
         if( typeof data !== "object" ) {
-            throw new Error( "data was not an object for #" + id );
+            throw new Error( "data was not an object or a string for #" + id );
         }
         if( ! data.url || typeof data.url !== "string" ) {
             throw new Error( "data.url was not a string for #" + id );
@@ -63,8 +67,10 @@ GLoader.prototype = {
             throw new Error( "type was not a valid value for #" + id );
         }
 
-        data.type         = type;
-        data.callback     = callback;
+        data.type     = type;
+        if( callback ) {
+            data.callback = callback;
+        }
 
         return this.graph.addNode( id, data );
     },
@@ -141,50 +147,55 @@ GLoader.prototype = {
                 }
             };
 
-            s.onerror = s.onabort = function( message ) {
+            // if no fallback specified, reject the promise directly
+            if( ! obj.fallback ) {
+                s.onerror = s.onabort = reject;
+            } else {
+                s.onerror = s.onabort = function( message ) {
 
-                //console.log( "fallback pour " + obj.cdn );
+                    //console.log( "fallback pour " + obj.cdn );
 
-                var url2  = obj.fallback,
-                    type2 = obj.type,
-                    clbk2 = obj.callback;
+                    var url2  = obj.fallback,
+                        type2 = obj.type,
+                        clbk2 = obj.callback;
 
-                //console.log( "Loading2 of " + type2 + " : " + url2 );
+                    //console.log( "Loading2 of " + type2 + " : " + url2 );
 
-                var r2 = false, t2, s2;
+                    var r2 = false, t2, s2;
 
-                if( type2 == "js" ) {
-                    t2 = document.getElementsByTagName("script")[0];
-                    s2 = document.createElement       ("script");
-                    s2.type   = "text/javascript";
-                    s2.src    = url2;
-                    s2.defer  = true;
-                } else if( type2 == "css" ) {
-                    s2 = document.createElement       ( "link"  );
-                    s2.type   = "text/css";
-                    s2.rel    = "stylesheet";
-                    s2.href   = url2;
-                }
-
-                s2.onload = s.onreadystatechange = function () {
-                    //console.log( type2 + " s2.onload " + url2 );
-                    if( ! r2 && ( ! this.readyState || this.readyState == "complete" ) ) {
-                        r2 = true;
-                        resolve( this );
-                        //console.log( "resolved2 : " + type2 + " " + url2 );
-                        if( typeof clbk2 == "function" ) {
-                            clbk2.call( this );
-                        } else if( typeof clbk2 == "object" && typeof clbk2.fn == "function" ) {
-                            clbk2.fn.apply( ( clbk2.scope ? clbk2.scope : this ), ( typeof clbk2.args == "object" && clbk2.args.length ? clbk2.args : [] ) );
-                        }
+                    if( type2 == "js" ) {
+                        t2 = document.getElementsByTagName("script")[0];
+                        s2 = document.createElement       ("script");
+                        s2.type   = "text/javascript";
+                        s2.src    = url2;
+                        s2.defer  = true;
+                    } else if( type2 == "css" ) {
+                        s2 = document.createElement       ( "link"  );
+                        s2.type   = "text/css";
+                        s2.rel    = "stylesheet";
+                        s2.href   = url2;
                     }
+
+                    s2.onload = s.onreadystatechange = function () {
+                        //console.log( type2 + " s2.onload " + url2 );
+                        if( ! r2 && ( ! this.readyState || this.readyState == "complete" ) ) {
+                            r2 = true;
+                            resolve( this );
+                            //console.log( "resolved2 : " + type2 + " " + url2 );
+                            if( typeof clbk2 == "function" ) {
+                                clbk2.call( this );
+                            } else if( typeof clbk2 == "object" && typeof clbk2.fn == "function" ) {
+                                clbk2.fn.apply( ( clbk2.scope ? clbk2.scope : this ), ( typeof clbk2.args == "object" && clbk2.args.length ? clbk2.args : [] ) );
+                            }
+                        }
+                    };
+
+                    s2.onerror = s2.onabort = reject;
+
+                    if( type2 == "css" ) document.body.appendChild ( s2     );
+                    else                 t2.parentNode.insertBefore( s2, t2 );
                 };
-
-                s2.onerror = s2.onabort = reject;
-
-                if( type2 == "css" ) document.body.appendChild ( s2     );
-                else                 t2.parentNode.insertBefore( s2, t2 );
-            };
+            }
             if( type == "css" ) document.body.appendChild( s    );
             else                t.parentNode.insertBefore( s, t );
 
