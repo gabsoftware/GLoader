@@ -154,15 +154,19 @@ gloader.addScript( "jqueryui", {
 Add a script to load.
 Parameters:
 <i>id</i>   (string)       : The id of the script to load
-<i>data</i> (string|object): The configuration data of the script to load. If a string, it should be a valid URL. It can also be an object:
+<i>data</i> (string|object): The configuration data of the script to load. If a string, it should be a valid URL.
+                             It can also be an object:
 {
     <i>url</i>      (string): The URL of the script to load
-    <i>fallback</i> (string): The fallback URL of the script to load, will be used if the script cannot be loaded with the url config
+    <i>fallback</i> (string): The fallback URL of the script to load, will be used if the script cannot be loaded
+                             with the url config
 }
-<i>callback</i> (function|object): The callback function to call when the script has been loaded. The callback parameter can also be an object:
+<i>callback</i> (function|object): The callback function to call when the script has been loaded. The callback
+                             parameter can also be an object:
 {
     <i>fn</i>    (function): The callback function to call when the script has been loaded
-    <i>args</i>  (array)   : An optional array of arguments that will be passed to the callback function. By default it's [] (empty array).
+    <i>args</i>  (array)   : An optional array of arguments that will be passed to the callback function. By
+                             default it's [] (empty array).
     <i>scope</i> (object)  : The optional value of <i>this</i> for the callback function.
 }
 Returns: nothing
@@ -171,15 +175,19 @@ Returns: nothing
 Add a stylesheet to load.
 Parameters:
 <i>id</i>   (string)       : The id of the stylesheet to load
-<i>data</i> (string|object): The configuration data of the stylesheet to load. If a string, it should be a valid URL. It can also be an object:
+<i>data</i> (string|object): The configuration data of the stylesheet to load. If a string, it should be a valid
+                             URL. It can also be an object:
 {
     <i>url</i>      (string): The URL of the stylesheet to load
-    <i>fallback</i> (string): The fallback URL of the stylesheet to load, will be used if the stylesheet cannot be loaded with the url config
+    <i>fallback</i> (string): The fallback URL of the stylesheet to load, will be used if the stylesheet cannot
+                             be loaded with the url config.
 }
-<i>callback</i> (function|object): The callback function to call when the stylesheet has been loaded. The callback parameter can also be an object:
+<i>callback</i> (function|object): The callback function to call when the stylesheet has been loaded. The callback
+                             parameter can also be an object:
 {
     <i>fn</i>    (function): The callback function to call when the stylesheet has been loaded
-    <i>args</i>  (array)   : An optional array of arguments that will be passed to the callback function. By default it's [] (empty array).
+    <i>args</i>  (array)   : An optional array of arguments that will be passed to the callback function. By
+                             default it's [] (empty array).
     <i>scope</i> (object)  : The optional value of <i>this</i> for the callback function.
 }
 Returns: nothing
@@ -188,16 +196,20 @@ Returns: nothing
 Add a resource to load.
 Parameters:
 <i>id</i>   (string)       : The id of the resource to load
-<i>data</i> (string|object): The configuration data of the resource to load. If a string, it should be a valid URL. It can also be an object:
+<i>data</i> (string|object): The configuration data of the resource to load. If a string, it should be a valid URL.
+                             It can also be an object:
 {
     <i>url</i>      (string): The URL of the resource to load
-    <i>fallback</i> (string): The fallback URL of the resource to load, will be used if the resource cannot be loaded with the url config
+    <i>fallback</i> (string): The fallback URL of the resource to load, will be used if the resource cannot be
+                             loaded with the url config.
 }
 <i>type</i> (string)       : The type of the resource to load. Accepted values are "js" and "css".
-<i>callback</i> (function|object): The callback function to call when the resource has been loaded. The callback parameter can also be an object:
+<i>callback</i> (function|object): The callback function to call when the resource has been loaded. The callback
+                             parameter can also be an object:
 {
     <i>fn</i>    (function): The callback function to call when the resource has been loaded
-    <i>args</i>  (array)   : An optional array of arguments that will be passed to the callback function. By default it's [] (empty array).
+    <i>args</i>  (array)   : An optional array of arguments that will be passed to the callback function. By
+                             default it's [] (empty array).
     <i>scope</i> (object)  : The optional value of <i>this</i> for the callback function.
 }
 Returns: nothing
@@ -235,7 +247,8 @@ Parameters:
 Returns (object): The resource data
 {
     <i>url</i>      (string): The URL of the resource to load
-    <i>fallback</i> (string): The fallback URL of the resource to load, will be used if the resource cannot be loaded with the url config
+    <i>fallback</i> (string): The fallback URL of the resource to load, will be used if the resource cannot be
+                              loaded with the url config
     <i>type</i>     (string): The type of the resource to load. Valid values are "js" and "css".
 }
 
