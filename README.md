@@ -54,9 +54,10 @@ This gives the following dependency tree:
 
 ```
                     jqueryui
-                  /                 bootstrapcss
-        jquery --                 /
-                  \ bootstrapjs - 
+                  /
+        jquery --                   bootstrapcss
+                  \               /
+                    bootstrapjs - 
                                   \
                                     pdfmake - 
                                               \
