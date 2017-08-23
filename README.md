@@ -1,4 +1,4 @@
-# [GLoader](https://gabsoftware.github.io/gloader/) - Powerful JavaScript and stylesheet loader
+# [GLoader](https://gabsoftware.github.io/GLoader/) - Powerful JavaScript and stylesheet loader
 
 GLoader is a Web resources loader with dependency management. The library is very lightweight (6 kb minified).
 
