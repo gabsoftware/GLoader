@@ -239,15 +239,15 @@ Returns (boolean): true if _id_ is a valid resource ID.
 <b>addDependency</b>( idfrom, idto )
 Declare a dependency relationship between two resources
 Parameters:
-    <i>idfrom</i> (string): The id of the resource on which depends the resource identified by the _idto_ parameter
-    <i>idto</i>   (object): The id of the resource that depends on the resource identified by the _idfrom_ parameter
+    <i>idfrom</i> (string): The id of the resource on which depends the resource identified by the <i>idto</i> parameter
+    <i>idto</i>   (object): The id of the resource that depends on the resource identified by the <i>idfrom</i> parameter
 Returns: nothing
 
 <b>removeDependency</b>( from, to )
 Remove a dependency relationship between two resources
 Parameters:
-    <i>idfrom</i> (string): The id of the resource on which depends the resource identified by the _idto_ parameter
-    <i>idto</i>   (object): The id of the resource that depends on the resource identified by the _idfrom_ parameter
+    <i>idfrom</i> (string): The id of the resource on which depends the resource identified by the <i>idto</i> parameter
+    <i>idto</i>   (object): The id of the resource that depends on the resource identified by the <i>idfrom</i> parameter
 Returns: nothing
 
 <b>getData</b>( id )
