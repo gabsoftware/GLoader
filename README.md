@@ -186,8 +186,8 @@ Returns                       : nothing
 Add a stylesheet to load.
 Parameters:
     <i>id</i>   (string)             : The id of the stylesheet to load
-    <i>data</i> (string|object): The configuration data of the stylesheet to load. If a string, it should be 
-                                a valid URL. It can also be an object:
+    <i>data</i> (string|object)      : The configuration data of the stylesheet to load. If a string is
+                                provided, it should be a valid URL. It can also be an object:
         {
             <i>url</i>      (string) : The URL of the stylesheet to load
             <i>fallback</i> (string) : The fallback URL of the stylesheet to load, will be used if the
