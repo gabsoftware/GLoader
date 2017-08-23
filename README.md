@@ -180,7 +180,7 @@ Parameters:
                                 function. By default it's [] (empty array).
             <i>scope</i> (object)    : The optional value of <i>this</i> for the callback function.
         }
-Returns                              : nothing
+Returns                       : nothing
 
 <b>addStylesheet</b>( id, data, callback )
 Add a stylesheet to load.
@@ -201,7 +201,7 @@ Parameters:
                                 function. By default it's [] (empty array).
             <i>scope</i> (object)    : The optional value of <i>this</i> for the callback function.
         }
-Returns                              : nothing
+Returns                       : nothing
 
 <b>addResource</b>( id, data, type, callback )
 Add a resource to load.
@@ -223,19 +223,19 @@ Parameters:
                                 function. By default it's [] (empty array).
             <i>scope</i> (object)    : The optional value of <i>this</i> for the callback function.
         }
-Returns                              : nothing
+Returns                       : nothing
 
 <b>removeResource</b>( id )
 Remove a resource to load.
 Parameters:
     <i>id</i> (string)               : The id of the resource
-Returns                              : nothing
+Returns                       : nothing
 
 <b>hasResource</b>( id )
 Check if a resource should be loaded
 Parameters:
     <i>id</i> (string)               : The id of the resource
-Returns (boolean)                    : true if _id_ is a valid resource ID.
+Returns (boolean)             : true if _id_ is a valid resource ID.
 
 <b>addDependency</b>( idfrom, idto )
 Declare a dependency relationship between two resources
@@ -244,7 +244,7 @@ Parameters:
                                 the <i>idto</i> parameter
     <i>idto</i>   (object)           : The id of the resource that depends on the resource identified by
                                 the <i>idfrom</i> parameter
-Returns                              : nothing
+Returns                       : nothing
 
 <b>removeDependency</b>( from, to )
 Remove a dependency relationship between two resources
@@ -253,13 +253,13 @@ Parameters:
                                 the <i>idto</i> parameter
     <i>idto</i>   (object)           : The id of the resource that depends on the resource identified by
                                 the <i>idfrom</i> parameter
-Returns                              : nothing
+Returns                       : nothing
 
 <b>getData</b>( id )
 Get the data object attached to a resource
 Parameters:
     <i>id</i> (string)               : The id of the resource
-Returns (object)                     : The resource data
+Returns (object)              : The resource data
     {
         <i>url</i>      (string)     : The URL of the resource to load
         <i>fallback</i> (string)     : The fallback URL of the resource to load, will be used if the resource
@@ -271,27 +271,27 @@ Returns (object)                     : The resource data
 Load the resource identified by id
 Parameters:
     <i>id</i> (string)               : The id of the resource to load
-Returns (Promise)                    : A promise that will be fulfilled when the resource has been
+Returns (Promise)             : A promise that will be fulfilled when the resource has been
                                 loaded
 
 <b>loadResources</b>( step )
 Load an array of id of resources that should be loaded in parallel (a step)
 Parameters:
     <i>step</i> (Array)              : An array of the id of the resources to load in parallel
-Returns (Promise)                    : A promise that will be fulfilled when all the resources of
-                                the step have been loaded
+Returns (Promise)             : A promise that will be fulfilled when all the resources of the step
+                                have been loaded
 
 <b>sequence</b>( tasks, fn )
 Helper function to run sequencially several async tasks
 Parameters:
     <i>tasks</i> (Array)             : An array of steps, a step being an array of id of resources to load
     <i>fn</i>    (function)          : The function to run for each step
-Returns (Promise)                    : A promise that will be fulfilled when all the resources of
-                                each steps have be loaded
+Returns (Promise)             : A promise that will be fulfilled when all the resources of each
+                                steps have be loaded
 
 <b>load</b>()
 Load all the resources, step by step
 Parameters                            : (none)
-Returns (Promise)                     : A promise fulfilled after all the resources of each steps
-                                have be loaded
+Returns (Promise)             : A promise fulfilled after all the resources of each steps have been
+                                loaded
 </pre>
