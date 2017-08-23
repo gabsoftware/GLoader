@@ -1,7 +1,8 @@
 /*
  * GLoader - Web resources loader
- * Author: Gabriel Hautclocq
- * URL   : https://github.com/gabsoftware/gloader
+ * Author  : Gabriel Hautclocq
+ * URL     : https://github.com/gabsoftware/gloader
+ * License : MIT
  *
  */
 var GLoader = function GLoader() {
