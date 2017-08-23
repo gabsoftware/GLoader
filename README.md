@@ -1,4 +1,4 @@
-# GLoader
+# [GLoader](https://gabsoftware.github.io/gloader/)
 
 GLoader is a Web resources loader with dependency management. It's very lightweight (6 kb minified).
 
@@ -141,9 +141,9 @@ Parameters:
     <i>url</i>      (string): the URL of the script to load
     <i>fallback</i> (string): the fallback URL of the script to load, will be used if the script cannot be loaded with the url config
 }
-<i>callback</i> (function|object): the callback function to call when the resource is loaded. The callback parameter can also be an object:
+<i>callback</i> (function|object): the callback function to call when the script has been loaded. The callback parameter can also be an object:
 {
-    <i>fn</i>    (function): the callback function to call when the resource is loaded
+    <i>fn</i>    (function): the callback function to call when the script has been loaded
     <i>args</i>  (array)   : an optional array of arguments that will be passed to the callback function. By default it's [] (empty array).
     <i>scope</i> (object)  : the optional value of <i>this</i> for the callback function.
 }
@@ -158,9 +158,9 @@ Parameters:
     <i>url</i>      (string): the URL of the stylesheet to load
     <i>fallback</i> (string): the fallback URL of the stylesheet to load, will be used if the stylesheet cannot be loaded with the url config
 }
-<i>callback</i> (function|object): the callback function to call when the resource is loaded. The callback parameter can also be an object:
+<i>callback</i> (function|object): the callback function to call when the stylesheet has been loaded. The callback parameter can also be an object:
 {
-    <i>fn</i>    (function): the callback function to call when the resource is loaded
+    <i>fn</i>    (function): the callback function to call when the stylesheet has been loaded
     <i>args</i>  (array)   : an optional array of arguments that will be passed to the callback function. By default it's [] (empty array).
     <i>scope</i> (object)  : the optional value of <i>this</i> for the callback function.
 }
@@ -176,9 +176,9 @@ Parameters:
     <i>fallback</i> (string): the fallback URL of the resource to load, will be used if the resource cannot be loaded with the url config
 }
 <i>type</i> (string): the type of the resource to load. Accepted values are "js" and "css".
-<i>callback</i> (function|object): the callback function to call when the resource is loaded. The callback parameter can also be an object:
+<i>callback</i> (function|object): the callback function to call when the resource has been loaded. The callback parameter can also be an object:
 {
-    <i>fn</i>    (function): the callback function to call when the resource is loaded
+    <i>fn</i>    (function): the callback function to call when the resource has been loaded
     <i>args</i>  (array)   : an optional array of arguments that will be passed to the callback function. By default it's [] (empty array).
     <i>scope</i> (object)  : the optional value of <i>this</i> for the callback function.
 }
