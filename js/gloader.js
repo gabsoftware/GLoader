@@ -16,24 +16,24 @@ GLoader.prototype = {
     /**
     * Add a script to the dependency graph. If a dependency already exists with this id, this method will do nothing.
     */
-    "addScript": function( id, data ) {
+    "addScript": function( id, data, callback ) {
         "use strict";
-        return this.addResource( id, data, "js" );        
+        return this.addResource( id, data, "js", callback );        
     },
 
 
     /**
     * Add a stylesheet to the dependency graph. If a dependency already exists with this id, this method will do nothing.
     */
-    "addStylesheet": function( id, data ) {
+    "addStylesheet": function( id, data, callback ) {
         "use strict";
-        return this.addResource( id, data, "css" );
+        return this.addResource( id, data, "css", callback );
     },
 
     /**
     * Add a generic resource to the dependency graph. If a dependency already exists with this id, this method will do nothing.
     */
-    "addResource": function( id, data, type ) {
+    "addResource": function( id, data, type, callback ) {
         "use strict";
         if( ! id ) {
             throw new Error( "id was empty" );
@@ -63,7 +63,8 @@ GLoader.prototype = {
             throw new Error( "type was not a valid value for #" + id );
         }
 
-        data.type = type;
+        data.type         = type;
+        data.callback     = callback;
 
         return this.graph.addNode( id, data );
     },
@@ -93,22 +94,23 @@ GLoader.prototype = {
 
     "getData": function( id ) {
         "use strict";
-        console.log( "getData with", id );
+        //console.log( "getData with", id );
         return this.graph.getNodeData( id );
     },
 
     "loadResource": function( id ) {
         "use strict";
-        console.log( "loadResource with", id );
+        //console.log( "loadResource with", id );
         var self = this;
 
         return new Promise( function( resolve, reject ) {
 
             var obj  = self.getData( id );
             var url  = obj.url,
-                type = obj.type;
+                type = obj.type,
+                clbk = obj.callback;
 
-            console.log( "Chargement de " + type + " : " + url );
+            //console.log( "Loading of " + type + " : " + url );
 
             var r = false, t, s;
 
@@ -126,22 +128,28 @@ GLoader.prototype = {
             }
 
             s.onload = s.onreadystatechange = function () {
-                console.log( type + " s.onload " + url );
+                //console.log( type + " s.onload " + url );
                 if( ! r && ( ! this.readyState || this.readyState == "complete" ) ) {
                     r = true;
                     resolve( this );
-                    console.log( "resolved : " + type + " " + url );
+                    //console.log( "resolved : " + type + " " + url );
+                    if( typeof clbk == "function" ) {
+                        clbk.call( this );
+                    } else if( typeof clbk == "object" && typeof clbk.fn == "function" ) {
+                        clbk.fn.apply( ( clbk.scope ? clbk.scope : this ), ( typeof clbk.args == "object" && clbk.args.length ? clbk.args : [] ) );
+                    }
                 }
             };
 
             s.onerror = s.onabort = function( message ) {
 
-                console.log( "fallback pour " + obj.cdn );
+                //console.log( "fallback pour " + obj.cdn );
 
-                var url2      = obj.fallback,
-                    type2     = obj.type;
+                var url2  = obj.fallback,
+                    type2 = obj.type,
+                    clbk2 = obj.callback;
 
-                console.log( "Chargement de " + type2 + " : " + url2 );
+                //console.log( "Loading2 of " + type2 + " : " + url2 );
 
                 var r2 = false, t2, s2;
 
@@ -159,11 +167,16 @@ GLoader.prototype = {
                 }
 
                 s2.onload = s.onreadystatechange = function () {
-                    console.log( type2 + " s2.onload " + url2 );
+                    //console.log( type2 + " s2.onload " + url2 );
                     if( ! r2 && ( ! this.readyState || this.readyState == "complete" ) ) {
                         r2 = true;
                         resolve( this );
-                        console.log( "resolved : " + type2 + " " + url2 );
+                        //console.log( "resolved2 : " + type2 + " " + url2 );
+                        if( typeof clbk2 == "function" ) {
+                            clbk2.call( this );
+                        } else if( typeof clbk2 == "object" && typeof clbk2.fn == "function" ) {
+                            clbk2.fn.apply( ( clbk2.scope ? clbk2.scope : this ), ( typeof clbk2.args == "object" && clbk2.args.length ? clbk2.args : [] ) );
+                        }
                     }
                 };
 
@@ -181,7 +194,7 @@ GLoader.prototype = {
     // load an array of resources (a step) in parallel
     "loadResources": function( step ) {
         "use strict";
-        console.log( "loadResources with", step );
+        //console.log( "loadResources with", step );
         var self = this;
         var proms = [], prom;
         for( var i = 0, n = step.length; i < n; i++ ) {
@@ -197,7 +210,7 @@ GLoader.prototype = {
         var self = this;
         return tasks.reduce( function( promise, task ) {
             return promise.then( function( onFulfilled, onRejected ) {
-                console.log( "resources step loaded!" );
+                //console.log( "resources step loaded!" );
                 return fn( task );
             }.bind( self ) );
         }.bind( self ), Promise.resolve() );
@@ -213,17 +226,16 @@ GLoader.prototype = {
             throw new Error( "nothing to load" );
         }
 
-        // on lance la séquence de ressources à charger
+        // launch the resources loading sequence
         return self.sequence( steps, self.loadResources.bind( self ) ).then( function( onFulfilled, onRejected ) {
 
-            // (optionnel) code à exécuter lorsque toutes les ressources sont chargées
-            console.log( "jquery et bootstrap prêts !" );
+            // (optional) code to execute when all the resources have been loaded
+            //console.log( "all is loaded" );
 
         }, function( message ) {
 
-            // (optionnel) code à exécuter si une des ressources n'est pas chargée
-            console.log( "problème !", message );
-
+            // (optionnal) code to execute if any resource can't be loaded            
+            //console.log( "Problem!", message );
         });
 
 
