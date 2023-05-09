@@ -25,6 +25,7 @@ Using GLoader means for example that you should no longer worry to have errors s
 
 ```
 git clone https://github.com/gabsoftware/GLoader.git
+cd GLoader
 npm i
 npm run build
 ```
