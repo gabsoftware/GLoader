@@ -21,6 +21,16 @@ Using GLoader means for example that you should no longer worry to have errors s
 
 ## Usage
 
+### Getting started
+
+```
+git clone https://github.com/gabsoftware/GLoader.git
+npm i
+npm run build
+```
+
+Then you can use the gloader.es.js generated in the dist folder.
+
 ### Basics
 
 Firstly, add the GLoader script in your head tag or at the end of the body tag:
