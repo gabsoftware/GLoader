@@ -26,7 +26,7 @@ Using GLoader means for example that you should no longer worry to have errors s
 Firstly, add the GLoader script in your head tag or at the end of the body tag:
 
 ```
-<script type="text/javascript" src="gloader-all.min.js"></script>
+<script type="text/javascript" src="gloader.es.js"></script>
 ```
 
 You can find this script in the dist directory. Ensure that the following code is run <b>after</b>
@@ -35,7 +35,7 @@ GLoader has been loaded.
 Instantiate a GLoader:
 
 ```
-var gloader = new GLoader();
+const gloader = new GLoader();
 ```
 
 Then, add all your resources in GLoader:
@@ -198,7 +198,7 @@ example that you can place either in your `head` or in your `body` tag:
         gloader.load();
     }
 </script>
-<script type="text/javascript" src="gloader-all.min.js" defer onload="gloader_init()"></script>
+<script type="text/javascript" src="gloader.es.js" defer onload="gloader_init()"></script>
 ```
 
 ## API
